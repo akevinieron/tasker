@@ -14,3 +14,15 @@
 $app->get('/', function () use ($app) {
     return $app->version();
 });
+
+$app->group([
+    'prefix' => 'api/v1'
+], function ($app) {
+    // User resource routes
+    $app->get('users', 'UserController@index');
+    $app->get('users/{id}', 'UserController@get');
+    $app->post('users', 'UserController@create');
+    $app->put('users/{id}', 'UserController@update');
+    $app->delete('users/{id}', 'UserController@delete');
+
+});
