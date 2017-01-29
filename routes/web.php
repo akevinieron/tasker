@@ -15,9 +15,17 @@ $app->get('/', function () use ($app) {
     return $app->version();
 });
 
+$app->group(['prefix' => 'api/v1'], function ($app) {
+
+    $app->post('/login', 'AuthController@login');
+
+});
+
 $app->group([
-    'prefix' => 'api/v1'
+    'prefix' => 'api/v1',
+    'middleware' => 'jwt.auth'
 ], function ($app) {
+
     // User resource routes
     $app->get('users', 'UserController@index');
     $app->get('users/{id}', 'UserController@get');
