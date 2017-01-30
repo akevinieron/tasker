@@ -33,4 +33,11 @@ $app->group([
     $app->put('users/{id}', 'UserController@update');
     $app->delete('users/{id}', 'UserController@delete');
 
+    // Task resource routes
+    $app->get('tasks', 'TaskController@index');
+    $app->get('tasks/{id}', 'TaskController@get');
+    $app->post('tasks', 'TaskController@create');
+    $app->put('tasks/{id}', 'TaskController@update');
+    $app->delete('tasks/{id}', 'TaskController@delete');
+
 });

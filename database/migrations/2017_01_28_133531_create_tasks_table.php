@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration
             $table->date('due_date');
             $table->integer('user_id');
             $table->integer('priority_id');
+            $table->timestamps();
         });
     }
 
