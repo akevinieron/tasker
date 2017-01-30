@@ -8,6 +8,8 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Debug\Exception\FlattenException;
+use Illuminate\Http\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -45,6 +47,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        return parent::render($request, $e);
+//        return parent::render($request, $e);
+        $fe = FlattenException::create($e);
+        $decorated = json_encode([
+            'devMessage' => $e->getMessage(),
+            'userMessage' => 'Sorry! An error has ocurred!!',
+            'status' => $fe->getStatusCode()
+        ]);
+
+        $response = new Response($decorated, $fe->getStatusCode(), $fe->getHeaders());
+
+        return $response;
     }
 }
