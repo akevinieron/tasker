@@ -40,4 +40,11 @@ $app->group([
     $app->put('tasks/{id}', 'TaskController@update');
     $app->delete('tasks/{id}', 'TaskController@delete');
 
+    // Priority resource routes
+    $app->get('priorities', 'PriorityController@index');
+    $app->get('priorities/{id}', 'PriorityController@get');
+    $app->post('priorities', 'PriorityController@create');
+    $app->put('priorities/{id}', 'PriorityController@update');
+    $app->delete('priorities/{id}', 'PriorityController@delete');
+
 });
