@@ -10,14 +10,14 @@ class TaskController extends Controller
 
     public function index()
     {
-        $response = Task::with('user')->get();
+        $response = Task::with('user', 'priority')->get();
 
         return response()->json($response);
     }
 
     public function get($id)
     {
-        $response = Task::with('user')->where('id', $id)->first();
+        $response = Task::with('user', 'priority')->where('id', $id)->first();
 
         return response()->json($response);
     }

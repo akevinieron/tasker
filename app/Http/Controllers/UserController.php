@@ -10,14 +10,14 @@ class UserController extends Controller
 
     public function index()
     {
-        $response = User::all();
+        $response = User::with('tasks')->get();
 
         return response()->json($response);
     }
 
     public function get($id)
     {
-        $response = User::find($id);
+        $response = User::with('tasks')->where('id', $id)->first();
 
         return response()->json($response);
     }
